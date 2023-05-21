@@ -4,11 +4,14 @@ import { Link, useParams } from 'react-router-dom';
 import { IPost } from '../../types';
 import { format } from 'date-fns';
 import { UserContext } from '../../context/UserContext';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import Button from '../UI/Button';
 
 const PostPage = () => {
   const [postData, setPostData] = React.useState<IPost>();
+
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const { userData } = useContext(UserContext);
 
@@ -25,12 +28,24 @@ const PostPage = () => {
   }, [postData?.createdAt]);
 
   React.useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/post/${id}`).then((res) => {
-      setPostData(res.data);
-    });
+    setIsLoading(true);
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/post/${id}`)
+      .then((res) => {
+        setPostData(res.data);
+      })
+      .then(() => setIsLoading(false));
   }, [id]);
 
-  if (!postData) {
+  if (isLoading) {
+    return (
+      <div className="flex justify-center mt-80">
+        <ClipLoader size={150} aria-label="Loading Spinner" data-testid="loader" />
+      </div>
+    );
+  }
+
+  if (!postData && !isLoading) {
     return (
       <div className="flex justify-center items-center text-3xl font-semibold mt-52 text-center">
         <p>Ой, пост не был найден 😢</p>
@@ -69,7 +84,7 @@ const PostPage = () => {
       <p className="text-gray-700 font-light text-center">{postData?.summary}</p>
       <div
         className="border border-gray-400 p-5 rounded-xl w-full"
-        dangerouslySetInnerHTML={{ __html: postData?.content }}
+        dangerouslySetInnerHTML={{ __html: postData?.content as string }}
       />
     </div>
   );
