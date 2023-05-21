@@ -20,13 +20,15 @@ const Header = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    axios.get('http://localhost:4040/profile', { withCredentials: true }).then((userData) => {
-      setUserData(userData);
-    });
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/profile`, { withCredentials: true })
+      .then((userData) => {
+        setUserData(userData);
+      });
   }, [setUserData]);
 
   const onLogout = async () => {
-    await axios.post('http://localhost:4040/logout', {}, { withCredentials: true });
+    await axios.post(`${import.meta.env.VITE_API_URL}/logout`, {}, { withCredentials: true });
     setUserData(null);
     navigate('/');
   };

@@ -25,7 +25,7 @@ const PostPage = () => {
   }, [postData?.createdAt]);
 
   React.useEffect(() => {
-    axios.get(`http://localhost:4040/post/${id}`).then((res) => {
+    axios.get(`${import.meta.env.VITE_API_URL}/post/${id}`).then((res) => {
       setPostData(res.data);
     });
   }, [id]);
@@ -42,7 +42,7 @@ const PostPage = () => {
     <div className="w-full flex flex-col gap-2 items-center">
       <div>
         <img
-          src={`http://localhost:4040/${postData?.image}`}
+          src={`${import.meta.env.VITE_API_URL}/${postData?.image}`}
           className="h-96 object-contain rounded-xl border border-gray-400"
           alt="post_image"
         />

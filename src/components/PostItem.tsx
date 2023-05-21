@@ -20,7 +20,7 @@ const PostItem: React.FC<IPost> = ({ id, User, image, summary, title, createdAt 
         {image && (
           <div className="w-[50%] flex justify-center ">
             <img
-              src={`http://localhost:4040/${image}`}
+              src={`${import.meta.env.VITE_API_URL}/${image}`}
               className="object-contain h-[300px] rounded-xl border border-gray-400"
               alt=""
             />

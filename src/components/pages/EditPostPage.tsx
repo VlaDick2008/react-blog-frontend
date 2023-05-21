@@ -59,7 +59,7 @@ const EditPostPage = () => {
   React.useEffect(() => {
     setIsLoading(true);
     try {
-      axios.get(`http://localhost:4040/post/${id}`).then((res) => {
+      axios.get(`${import.meta.env.VITE_API_URL}/post/${id}`).then((res) => {
         setValue('title', res.data.title);
         setValue('summary', res.data.summary);
         setValue('file', res.data.image);
@@ -88,7 +88,7 @@ const EditPostPage = () => {
     formData.set('postId', id as string);
 
     try {
-      await fetch('http://localhost:4040/post/:id/edit', {
+      await fetch(`${import.meta.env.VITE_API_URL}/post/:id/edit`, {
         method: 'PUT',
         body: formData,
         credentials: 'include',

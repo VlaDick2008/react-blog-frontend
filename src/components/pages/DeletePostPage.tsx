@@ -12,13 +12,15 @@ const DeletePostPage = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    axios.get(`http://localhost:4040/post/${id}`).then((res) => setCurrentPostId(res.data.id));
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/post/${id}`)
+      .then((res) => setCurrentPostId(res.data.id));
   }, [id]);
 
   const onDeleteClick = () => {
     try {
       axios
-        .delete(`http://localhost:4040/post/${id}/delete`, {
+        .delete(`${import.meta.env.VITE_API_URL}/post/${id}/delete`, {
           withCredentials: true,
           data: { postId: currentPostId },
         })

@@ -15,7 +15,7 @@ const App = () => {
   const currentPost = posts.slice(firstPostIndex, lastPostIndex);
 
   React.useEffect(() => {
-    axios.get('http://localhost:4040/posts').then((res) => setPosts(res.data));
+    axios.get(`${import.meta.env.VITE_API_URL}/posts`).then((res) => setPosts(res.data));
   }, []);
 
   return (

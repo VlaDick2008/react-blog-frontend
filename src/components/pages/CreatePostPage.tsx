@@ -75,7 +75,7 @@ const CreatePostPage = () => {
     formData.set('postContent', data.postContent);
 
     try {
-      await fetch('http://localhost:4040/create_post', {
+      await fetch(`${import.meta.env.VITE_API_URL}/create_post`, {
         method: 'POST',
         body: formData,
         credentials: 'include',
