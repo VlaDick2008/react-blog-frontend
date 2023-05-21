@@ -18,6 +18,7 @@ const App = () => {
   const currentPost = posts.slice(firstPostIndex, lastPostIndex);
 
   React.useEffect(() => {
+    setIsLoading(true);
     axios
       .get(`${import.meta.env.VITE_API_URL}/posts`)
       .then((res) => setPosts(res.data))
