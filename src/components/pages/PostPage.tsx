@@ -8,12 +8,6 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 import Button from '../UI/Button';
 
-const override: React.CSSProperties = {
-  display: 'block',
-  margin: '0 auto',
-  borderColor: 'red',
-};
-
 const PostPage = () => {
   const [postData, setPostData] = React.useState<IPost>();
   const [isLoading, setIsLoading] = React.useState(true);
@@ -45,12 +39,7 @@ const PostPage = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center mt-80">
-        <ClipLoader
-          cssOverride={override}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
+        <ClipLoader size={150} aria-label="Loading Spinner" data-testid="loader" />
       </div>
     );
   }
