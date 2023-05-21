@@ -11,7 +11,7 @@ import Button from '../UI/Button';
 const PostPage = () => {
   const [postData, setPostData] = React.useState<IPost>();
 
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const { userData } = useContext(UserContext);
 
@@ -28,7 +28,6 @@ const PostPage = () => {
   }, [postData?.createdAt]);
 
   React.useEffect(() => {
-    setIsLoading(true);
     axios
       .get(`${import.meta.env.VITE_API_URL}/post/${id}`)
       .then((res) => {
