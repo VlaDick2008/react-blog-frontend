@@ -33,15 +33,11 @@ const Header = () => {
     navigate('/');
   };
 
-  React.useEffect(() => {
-    if (userData !== emptyUserData || userData === null) return navigate('/');
-  }, []);
-
   return (
-    <header className="flex flex-row justify-between items-center mb-10">
+    <header className="flex flex-row justify-between items-center md:mb-10 mb-5">
       <Link to="/" className="flex flex-row gap-1 leading-none">
-        <span className="font-bold text-3xl">Крутой</span>
-        <span className="italic font-light underline">Блог</span>
+        <span className="font-bold md:text-3xl text-xl">Крутой</span>
+        <span className="italic font-light underline md:text-base text-xs">Блог</span>
       </Link>
       {!userData?.data?.username ? (
         <nav className="flex flex-row gap-4">
@@ -53,12 +49,14 @@ const Header = () => {
           </Link>
         </nav>
       ) : (
-        <nav className="flex flex-row gap-4 items-center">
-          <p>Добро пожаловать, {userData?.data?.username}</p>
-          <Link to="/create">
-            <Button label="Создать пост" />
-          </Link>
-          <Button onClick={onLogout} label="Выход" />
+        <nav className="flex md:flex-row flex-col md:gap-4 gap-2 items-center justify-center">
+          <p className="text-xs">Добро пожаловать, {userData?.data?.username}</p>
+          <div className="flex gap-2">
+            <Link to="/create">
+              <Button label="Создать пост" />
+            </Link>
+            <Button onClick={onLogout} label="Выход" />
+          </div>
         </nav>
       )}
     </header>

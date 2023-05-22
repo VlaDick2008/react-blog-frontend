@@ -57,12 +57,12 @@ const PostPage = () => {
       <div>
         <img
           src={`${import.meta.env.VITE_API_URL}/${postData?.image}`}
-          className="h-96 object-contain rounded-xl border border-gray-400"
+          className="md:h-96 h-full object-contain rounded-xl border border-gray-400"
           alt="post_image"
         />
       </div>
       <div className="flex gap-2 items-center">
-        <p className="font-medium text-lg leading-none">{postData?.User.username}</p>
+        <p className="font-medium md:text-lg text-sm leading-none">{postData?.User.username}</p>
         <time className="text-gray-400 text-xs">{formatedCreationDate}</time>
         {!userData ? (
           <></>
@@ -79,10 +79,10 @@ const PostPage = () => {
           )
         )}
       </div>
-      <h1 className="text-3xl font-bold leading-none text-center">{postData?.title}</h1>
-      <p className="text-gray-700 font-light text-center">{postData?.summary}</p>
+      <h1 className="md:text-3xl text-xl font-bold leading-none text-center">{postData?.title}</h1>
+      <p className="text-gray-700 font-light md:text-md text-sm text-center">{postData?.summary}</p>
       <div
-        className="border border-gray-400 p-5 rounded-xl w-full"
+        className="border border-gray-400 p-5 rounded-xl md:text-md text-sm w-full"
         dangerouslySetInnerHTML={{ __html: postData?.content as string }}
       />
     </div>

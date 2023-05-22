@@ -16,23 +16,23 @@ const PostItem: React.FC<IPost> = ({ id, User, image, summary, title, createdAt 
 
   return (
     <Link to={`/post/${id}`}>
-      <div className="border border-gray-400 p-5 rounded-xl flex justify-between gap-6 hover:bg-gray-100 transition">
+      <div className="border border-gray-400 p-5 rounded-xl flex md:flex-row flex-col md:justify-between md:gap-6 gap-4 hover:bg-gray-100 transition">
         {image && (
-          <div className="w-[50%] flex justify-center ">
+          <div className="md:w-[50%] w-full flex justify-center ">
             <img
               src={`${import.meta.env.VITE_API_URL}/${image}`}
-              className="object-contain h-[300px] rounded-xl border border-gray-400"
+              className="object-contain md:h-[300px] rounded-xl border border-gray-400"
               alt=""
             />
           </div>
         )}
-        <div className={image ? 'w-[50%]' : ''}>
-          <div className="flex gap-2 items-end">
-            <p className="font-medium text-lg leading-none">{User.username}</p>
+        <div className={image ? 'md:w-[50%] w-full' : ''}>
+          <div className="flex gap-2 items-center">
+            <p className="font-medium md:text-lg text-xs leading-none">{User.username}</p>
             <time className="text-gray-400 text-xs">{formatedCreationDate}</time>
           </div>
-          <h2 className="font-bold text-3xl my-2">{title}</h2>
-          <p>{summary}</p>
+          <h2 className="font-bold md:text-3xl text-sm my-2">{title}</h2>
+          <p className="md:text-base text-xs">{summary}</p>
         </div>
       </div>
     </Link>
